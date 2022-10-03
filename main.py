@@ -14,9 +14,10 @@ pygame.display.set_icon(icon)
 playerImg = pygame.image.load("sources Manoj/GameImage/rocket.png")
 playerX =370
 playerY =480
+playerX_change = 0
 
-def player():
-    screen.blit(playerImg,(playerX,playerY))# blit == drow
+def player(x,y):
+    screen.blit(playerImg,(x,y))# blit == drow
 
 
 
@@ -30,10 +31,22 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        # if keystroke is pressed check wether its right ot left
+        if event.type  == pygame.KEYDOWN:
+            print("A keystoke is pressed")
+            if event.key == pygame.K_LEFT:
+                playerX_change =-0.1
+            if event.key == pygame.K_RIGHT:
+                playerX_change = 0.1
+                print("Right arrow is pressed")
+        if event.type == pygame.KEYUP:
+            if event.key == pygame .K_LEFT or event.key == pygame.K_RIGHT:
+                playerX_change=0
+                print("KeyStoke has been released")
 
-
-
-    player()
+    #5 = 5 + -0.1=5
+    playerX += playerX_change
+    player(playerX,playerY)
     pygame.display.update()
 
 
